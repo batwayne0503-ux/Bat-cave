@@ -2,60 +2,60 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Batcave - System Active</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Wayne Enterprises - Batcave Archive</title>
     <style>
+        /* 기본 시스템 환경 */
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #1e1f22; color: #dbdee1; font-family: -apple-system, sans-serif; overflow-x: hidden; }
+        body { background-color: #1e1f22; color: #dbdee1; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
-        /* --- 1. 스플래시 연출 --- */
+        /* 1. 라이징 오버라이드 스플래시 */
         #splash-screen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background-color: #1e1f22; display: flex; justify-content: center; align-items: center;
             z-index: 10000; animation: fadeOut 0.5s ease-in-out 2.0s forwards;
         }
-        
-        .logo-container { position: relative; width: 250px; height: 250px; }
-        
+        .logo-container { position: relative; width: 180px; height: 180px; }
         .wayne-logo {
-            position: absolute; width: 90%; height: 90%;
-            /* 업로드하신 파일명으로 정확히 매핑 */
+            position: absolute; width: 70%; height: 70%;
             background: url('image/Wayne Ent. logo(white).png') no-repeat center/contain;
             animation: shatterRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
         }
-        
         .bat-symbol {
             position: absolute; width: 100%; height: 100%; opacity: 0;
-            /* 업로드하신 파일명으로 정확히 매핑 */
             background: url('image/bat_symbol.png') no-repeat center/contain;
             animation: fadeInSymbol 0.8s ease-in-out 0.3s forwards;
         }
 
-       /* --- 2. 대시보드 (모바일 대응 강화) --- */
-        #dashboard { 
-            max-width: 935px; margin: 0 auto; padding: 20px; 
-            opacity: 0; animation: fadeInBody 0.5s ease-in-out 2.0s forwards; 
-        }
+        /* 2. 대시보드 구조 복원 */
+        #dashboard { max-width: 935px; margin: 0 auto; padding: 40px 20px; opacity: 0; animation: fadeInBody 0.5s ease-in-out 2.5s forwards; }
         
-        .profile-header { display: flex; align-items: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #2b2d31; }
-        .avatar { width: 100px; height: 100px; border-radius: 50%; border: 1px solid #2b2d31; background: #313338; }
-        .profile-info { margin-left: 20px; }
-        .stats-table { display: flex; gap: 20px; margin: 10px 0; font-size: 0.9rem; }
+        .profile-header { display: flex; align-items: flex-start; margin-bottom: 44px; padding-bottom: 44px; border-bottom: 1px solid #2b2d31; }
+        .avatar { width: 150px; height: 150px; border-radius: 50%; background: #313338 url('image/profile_avatar.png') center/cover; flex-shrink: 0; }
         
-        /* 3열 그리드 모바일 비율 최적화 */
-        .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-        .grid-card { width: 100%; aspect-ratio: 1 / 1; background-color: #2b2d31; }
+        .profile-info { margin-left: 30px; }
+        .profile-info h2 { font-size: 1.7rem; color: #f2f3f5; margin-bottom: 15px; }
+        .stats-table { display: flex; gap: 40px; margin-bottom: 20px; font-size: 1rem; color: #b5bac1; }
+        .profile-bio { font-size: 0.95rem; line-height: 1.6; color: #dbdee1; max-width: 500px; }
+
+        /* 3열 그리드 */
+        .showcase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .grid-card { width: 100%; aspect-ratio: 3 / 4; background-color: #2b2d31; border: 1px solid rgba(255,255,255,0.03); }
         .grid-card img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- 애니메이션 제어 --- */
-        @keyframes shatterRight { 100% { opacity: 0; transform: translateX(30px); filter: blur(4px); } }
-        @keyframes fadeInSymbol { 
-            0% { opacity: 0; transform: scale(0.9); } 
-            30%, 85% { opacity: 1; transform: scale(1); } 
-            100% { opacity: 0; } 
-        }
+        /* 애니메이션 */
+        @keyframes shatterRight { 100% { opacity: 0; transform: translateX(50px); filter: blur(6px); } }
+        @keyframes fadeInSymbol { 0% { opacity: 0; transform: scale(0.9); } 30%, 85% { opacity: 1; transform: scale(1); } 100% { opacity: 0; } }
         @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
         @keyframes fadeInBody { to { opacity: 1; } }
+
+        /* 모바일 최적화 */
+        @media (max-width: 735px) {
+            .profile-header { flex-direction: column; align-items: center; text-align: center; }
+            .profile-info { margin-left: 0; margin-top: 20px; }
+            .stats-table { justify-content: center; gap: 20px; }
+            .showcase-grid { gap: 3px; }
+        }
     </style>
 </head>
 <body>
@@ -73,8 +73,12 @@
                 <h2>Mr. Wayne</h2>
                 <div class="stats-table">
                     <div class="stat-item"><b>12</b> 항목</div>
-                    <div class="stat-item"><b>Alpha</b> 보안</div>
+                    <div class="stat-item"><b>Alpha</b> 보안 등급</div>
+                    <div class="stat-item"><b>Online</b> 상태</div>
                 </div>
+                <section class="profile-bio">
+                    <p>고담의 밤에 최적화된 기동성 및 방검/방탄 인프라. <br>배트케이브 중앙 데이터 연동 확인 완료.</p>
+                </section>
             </div>
         </header>
         <main class="showcase-grid">
